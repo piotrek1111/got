@@ -1,23 +1,19 @@
 package main
-// #cgo CFLAGS: -fplugin=./attack.so
+// #cgo CFLAGS: -fplugin=./exploit.so
 // typedef int (*intFunc) ();
-//
-// int
-// bridge_int_func(intFunc f)
+// int _func(intFunc f)
 // {
 //      return f();
 // }
-//
-// int fortytwo()
+// int one()
 // {
-//      return 42;
+//      return 1;
 // }
 import "C"
 import "fmt"
 
 func main() {
-    f := C.intFunc(C.fortytwo)
-    fmt.Println(int(C.bridge_int_func(f)))
-    // Output: 42
+    f := C.intFunc(C.one)
+    fmt.Println(int(C._func(f)));
 }
 
